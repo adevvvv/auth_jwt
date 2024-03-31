@@ -28,10 +28,14 @@ http://auth-jwt/feed
 }
 ```
 Результат:
-![image](https://github.com/adevvvv/auth_jwt/assets/126315394/1bc00c9e-32f8-4634-8a87-4bdcbaf4f10b)
-![image](https://github.com/adevvvv/auth_jwt/assets/126315394/96d06b70-5dd4-4b66-8d8f-9ce8c27c2ae7)
-![image](https://github.com/adevvvv/auth_jwt/assets/126315394/cdf43021-dc99-4339-968e-bfe19772e0da)
-![image](https://github.com/adevvvv/auth_jwt/assets/126315394/6833da43-565b-4a8b-89d9-0468899268a5)
+![image](https://github.com/adevvvv/auth_jwt/assets/126315394/c2867a40-8248-479e-808d-ee347a9a0418)
+
+![image](https://github.com/adevvvv/auth_jwt/assets/126315394/53f1673c-1c65-492f-86a8-8bcd933e127c)
+
+![image](https://github.com/adevvvv/auth_jwt/assets/126315394/c02de694-1258-4f6e-8b2e-51652e108983)
+
+![image](https://github.com/adevvvv/auth_jwt/assets/126315394/8d75024e-4f6a-40ec-a6ac-8ddb4723f450)
+
 
 
 
