@@ -73,4 +73,15 @@ class User
 
         return false;
     }
+    public function checkPass($password):string
+    {
+        $number = preg_match('@[0-9]@', $password);
+        $upperCase = preg_match('@[A-Z]@', $password);
+        $lowerCase = preg_match('@[a-z]@', $password);
+        $specialChars = preg_match('@[^\w,!]@', $password);
+
+        if (strlen($password) > 8 && $number && $lowerCase && !$upperCase && !$specialChars) return "good";
+        elseif (strlen($password) > 8 && $number && $upperCase && $lowerCase && $specialChars) return "perfect";
+        else return "weak_password";
+    }
 }

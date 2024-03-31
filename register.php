@@ -20,12 +20,14 @@ $user->email = $data->email;
 $user->password = $data->password;
 
 // Проверка, что данного пользователя нет в БД
-$email_exists = $user->emailExists();
+$emailExists = $user->emailExists();
+// Проверка надежности пароля
+$user->checkPass($user->password);
 
 // Создание пользователя
 if (
     !empty($user->email) &&
-    $email_exists == 0 &&
+    $emailExists == 0 &&
     !empty($user->password) &&
     $user->createUser()
 ) {
