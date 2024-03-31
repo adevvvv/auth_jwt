@@ -1,6 +1,6 @@
 Запустить:
 1. Клонируй репозиторий, например в папку с OpenServer: git clone git@github.com:adevvvv/auth_jwt.git
-2. Первый раз запусти команды в БД MySQL из файда start.sql
+2. Первый раз запусти команды в БД MySQL из файла start.sql
 3. Запусти следующие HTTP запросы c JSON, например в Postman:
 
 http://auth-jwt/register
