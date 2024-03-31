@@ -1,1 +1,76 @@
 <?php
+
+class User
+{
+    private $connect;
+    private $tableName = "vk";
+    public $id;
+    public $email;
+    public $password;
+
+    public function __construct($db)
+    {
+        $this->connect = $db;
+    }
+
+    public function getId()
+    {
+        $query = "SELECT id, password
+            FROM " . $this->tableName . "
+            WHERE email = ?";
+
+        $stmt = $this->connect->prepare($query);
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $stmt->bindParam(1, $this->email);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $this->id = $row["id"];
+    }
+
+    function createUser(): bool
+    {
+        $query = "INSERT INTO " . $this->tableName . "
+                SET
+                    email = :email,
+                    password = :password";
+
+        $stmt = $this->connect->prepare($query);
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->password = htmlspecialchars(strip_tags($this->password));
+        $stmt->bindParam(":email", $this->email);
+
+        $passwordHash = password_hash($this->password, PASSWORD_DEFAULT);
+        $stmt->bindParam(":password", $passwordHash);
+
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+    function emailExists():bool
+    {
+        $query = "SELECT id, password
+            FROM " . $this->tableName . "
+            WHERE email = ?
+            LIMIT 0,1";
+
+        $stmt = $this->connect->prepare($query);
+        $this->email=htmlspecialchars(strip_tags($this->email));
+        $stmt->bindParam(1, $this->email);
+        $stmt->execute();
+        $quantity = $stmt->rowCount();
+
+        if ($quantity > 0) {
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $this->id = $row["id"];
+            $this->password = $row["password"];
+
+            return true;
+        }
+
+        return false;
+    }
+}
