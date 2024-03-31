@@ -8,7 +8,7 @@ http://auth-jwt/register
 ```
 {
   "email" : "vk@bk.ru",
-  "password" : "1111"
+  "password" : "Ddthbjjc1111?"
 }
 ```
 
@@ -17,7 +17,7 @@ http://auth-jwt/authorize
 ```
 {
   "email" : "vk@bk.ru",
-  "password" : "1111"
+  "password" : "Ddthbjjc1111?"
 }
 ```
 
