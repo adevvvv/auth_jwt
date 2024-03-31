@@ -20,22 +20,22 @@ $user->email = $data->email;
 $user->password = $data->password;
 
 // Проверка, что данного пользователя нет в БД
-$emailExists = $user->emailExists();
+$email_exists = $user->emailExists();
 // Проверка надежности пароля
-$checkPass = $user->checkPass($user->password);
+$password_check_status = $user->checkPass($user->password);
 // Обновить данные пользователя если он существует
 $user->updateUser($user->password);
 
 // Создание пользователя
 if (
     !empty($user->email) &&
-    $emailExists == 0 &&
+    $email_exists == 0 &&
     !empty($user->password) &&
     $user->createUser()
 ) {
-    
+    $user_id = $user->getId();
     http_response_code(200);
 
-    echo json_encode(array("user_id: " => $user->getId(), "password_check_status: " => $checkPass));
+    echo json_encode(array("user_id: " => $user_id, "password_check_status: " => $password_check_status));
 }
 else echo json_encode(array("Пользователь существует"));
