@@ -73,6 +73,32 @@ class User
 
         return false;
     }
+    public function updateUser($password):bool
+    {
+        $password=!empty($this->password) ? ", password = :password" : "";
+
+        $query = "UPDATE " . $this->tableName . "
+            SET
+                email = :email
+                {$password}
+            WHERE id = :id";
+
+        $stmt = $this->connect->prepare($query);
+        $this->email=htmlspecialchars(strip_tags($this->email));
+        $stmt->bindParam(":email", $this->email);
+
+        if(!empty($this->password)){
+            $this->password=htmlspecialchars(strip_tags($this->password));
+            $passwordHash = password_hash($this->password, PASSWORD_BCRYPT);
+            $stmt->bindParam(":password", $passwordHash);
+        }
+
+        $stmt->bindParam(":id", $this->id);
+        if($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
     public function checkPass($password):string
     {
         $number = preg_match('@[0-9]@', $password);

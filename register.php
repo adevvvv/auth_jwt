@@ -22,7 +22,9 @@ $user->password = $data->password;
 // Проверка, что данного пользователя нет в БД
 $emailExists = $user->emailExists();
 // Проверка надежности пароля
-$user->checkPass($user->password);
+$checkPass = $user->checkPass($user->password);
+// Обновить данные пользователя если он существует
+$user->updateUser($user->password);
 
 // Создание пользователя
 if (
@@ -31,8 +33,9 @@ if (
     !empty($user->password) &&
     $user->createUser()
 ) {
+    
     http_response_code(200);
 
-    echo json_encode(array("id: " => $user->getId(), "email: " => $user->email));
+    echo json_encode(array("user_id: " => $user->getId(), "password_check_status: " => $checkPass));
 }
 else echo json_encode(array("Пользователь существует"));
